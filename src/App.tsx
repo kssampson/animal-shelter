@@ -88,6 +88,7 @@ export type Donation = {
 function App() {
 
   const [donations, setDonations] = useState(fakeDonations);
+  const [isSomeEditOpen, setIsSomeEditOpen] = useState(false);
 
   const filterOptions = ['Money', 'Food', 'Clothing', 'All Items'];
 
@@ -98,6 +99,7 @@ function App() {
       }
       return donation;
     })
+    setIsSomeEditOpen(!isSomeEditOpen);
     setDonations(updated);
   }
 
@@ -108,6 +110,7 @@ function App() {
       }
       return donation;
     })
+    setIsSomeEditOpen(!isSomeEditOpen);
     setDonations(updated);
   }
 
@@ -118,6 +121,7 @@ function App() {
       }
       return donation;
     })
+    setIsSomeEditOpen(!isSomeEditOpen);
     setDonations(updated);
   }
 
@@ -128,6 +132,7 @@ function App() {
       }
       return donation;
     })
+    setIsSomeEditOpen(!isSomeEditOpen);
     setDonations(updated);
   }
 
@@ -171,6 +176,8 @@ function App() {
             handleQuantityEdit={handleQuantityEdit}
             filterOptions={filterOptions}
             deleteDonation={deleteDonation}
+            isSomeEditOpen={isSomeEditOpen}
+            setIsSomeEditOpen={setIsSomeEditOpen}
           />
         </Box>
       </Box>
