@@ -21,8 +21,8 @@ Basic statistics of the donations, including the total amount donated per catego
 ## Running the Code:
 
 In the project directory, cd client. Then: 
-npm install
-npm run start
+# npm install,
+# npm run start
 
 
 
