@@ -23,6 +23,8 @@ const TableData = ( { donorName, type, quantity, date, handleNameEdit, id, handl
   const [typeEditClicked, setTypeEditClicked] = useState(false);
   const [quantityEditClicked, setQuantityEditClicked] = useState(false);
 
+  const [isSomeEditOpen, setIsSomeEditOpen] = useState(false);
+
   const [newName, setNewName] = useState("");
   const [startDate, setStartDate] = useState(date);
   const [newType, setNewType] = useState("");
@@ -30,13 +32,13 @@ const TableData = ( { donorName, type, quantity, date, handleNameEdit, id, handl
 
   return (
     <>
-      <TableDataTextForm newName={newName} setNewName={setNewName} setNameEditOpen={setNameEditOpen} nameEditOpen={nameEditOpen} handleNameEdit={handleNameEdit} id={id} donorName={donorName}/>
+      <TableDataTextForm newName={newName} setNewName={setNewName} setNameEditOpen={setNameEditOpen} nameEditOpen={nameEditOpen} handleNameEdit={handleNameEdit} id={id} donorName={donorName} isSomeEditOpen={isSomeEditOpen} setIsSomeEditOpen={setIsSomeEditOpen}/>
 
-      <TableDataType type={type} newType={newType} setNewType={setNewType} handleTypeEdit={handleTypeEdit} typeEditClicked={typeEditClicked} setTypeEditClicked={setTypeEditClicked} id={id}/>
+      <TableDataType type={type} newType={newType} setNewType={setNewType} handleTypeEdit={handleTypeEdit} typeEditClicked={typeEditClicked} setTypeEditClicked={setTypeEditClicked} id={id} isSomeEditOpen={isSomeEditOpen} setIsSomeEditOpen={setIsSomeEditOpen}/>
 
-      <TableDataQuantity type={type} quantity={quantity} newQuantity={newQuantity} setNewQuantity={setNewQuantity} handleQuantityEdit={handleQuantityEdit} quantityEditClicked={quantityEditClicked} setQuantityEditClicked={setQuantityEditClicked} id={id}/>
+      <TableDataQuantity type={type} quantity={quantity} newQuantity={newQuantity} setNewQuantity={setNewQuantity} handleQuantityEdit={handleQuantityEdit} quantityEditClicked={quantityEditClicked} setQuantityEditClicked={setQuantityEditClicked} id={id} isSomeEditOpen={isSomeEditOpen} setIsSomeEditOpen={setIsSomeEditOpen}/>
 
-      <TableDataCalendar startDate={startDate} setStartDate={setStartDate} setDateEditClicked={setDateEditClicked} dateEditClicked={dateEditClicked} id={id} handleDateEdit={handleDateEdit}/>
+      <TableDataCalendar startDate={startDate} setStartDate={setStartDate} setDateEditClicked={setDateEditClicked} dateEditClicked={dateEditClicked} id={id} handleDateEdit={handleDateEdit} isSomeEditOpen={isSomeEditOpen} setIsSomeEditOpen={setIsSomeEditOpen}/>
     </>
   )
 }

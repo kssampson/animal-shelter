@@ -9,9 +9,11 @@ type Props = {
   setDateEditClicked: React.Dispatch<React.SetStateAction<boolean>>;
   id: number;
   handleDateEdit: (newDate: Date, id: number) => void;
+  isSomeEditOpen: boolean;
+  setIsSomeEditOpen: React.Dispatch<React.SetStateAction<boolean>>;
 }
 
-const TableDataCalendar = ( {startDate, setStartDate, dateEditClicked, setDateEditClicked, id, handleDateEdit}: Props ) => {
+const TableDataCalendar = ( {startDate, setStartDate, dateEditClicked, setDateEditClicked, id, handleDateEdit, isSomeEditOpen, setIsSomeEditOpen}: Props ) => {
 
   const handleSelect = () => {
     handleDateEdit(startDate, id);
@@ -19,6 +21,11 @@ const TableDataCalendar = ( {startDate, setStartDate, dateEditClicked, setDateEd
   }
 
   const cancelUpdateDate = (e: any) => {
+    setDateEditClicked(!dateEditClicked);
+  }
+
+  const handleClick = () => {
+    setIsSomeEditOpen(!isSomeEditOpen);
     setDateEditClicked(!dateEditClicked);
   }
 
@@ -42,16 +49,18 @@ const TableDataCalendar = ( {startDate, setStartDate, dateEditClicked, setDateEd
     </Td>
     ) : (
       <Td>{startDate.toLocaleDateString('en-US')}
-        <IconButton
-          mb={1}
-          aria-label={"edit icon"}
-          icon={<EditIcon />}
-          background="none"
-          size="sm"
-          _hover={{ color: "gray.50" }}
-          onClick={() => setDateEditClicked(!dateEditClicked)}
-          >
-        </IconButton>
+        {!isSomeEditOpen && (
+          <IconButton
+            mb={1}
+            aria-label={"edit icon"}
+            icon={<EditIcon />}
+            background="none"
+            size="sm"
+            _hover={{ color: "gray.50" }}
+            onClick={handleClick}
+            >
+          </IconButton>
+        )}
         </Td>
     )}
     </>

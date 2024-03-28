@@ -10,9 +10,11 @@ type Props = {
   quantityEditClicked: boolean;
   setQuantityEditClicked: React.Dispatch<React.SetStateAction<boolean>>
   id: number;
+  isSomeEditOpen: boolean;
+  setIsSomeEditOpen: React.Dispatch<React.SetStateAction<boolean>>;
 }
 
-const TableDataQuantity = ( {type, quantity, newQuantity, setNewQuantity, handleQuantityEdit, quantityEditClicked, setQuantityEditClicked, id}: Props ) => {
+const TableDataQuantity = ( {type, quantity, newQuantity, setNewQuantity, handleQuantityEdit, quantityEditClicked, setQuantityEditClicked, id, isSomeEditOpen, setIsSomeEditOpen}: Props ) => {
   const formatDollars = (val: string) => `$` + val;
   const formatOther = (val: string) => val;
   const parse = (val: string) => val.replace(/^\$/, '');
@@ -22,6 +24,7 @@ const TableDataQuantity = ( {type, quantity, newQuantity, setNewQuantity, handle
   }
 
   const cancelUpdateQuantity = () => {
+    setIsSomeEditOpen(!isSomeEditOpen);
     setQuantityEditClicked(!quantityEditClicked);
   }
 
@@ -29,6 +32,11 @@ const TableDataQuantity = ( {type, quantity, newQuantity, setNewQuantity, handle
     handleQuantityEdit(newQuantity, id)
     setNewQuantity(0);
     setQuantityEditClicked(!quantityEditClicked);
+  }
+
+  const handleClick = () => {
+    setIsSomeEditOpen(!isSomeEditOpen);
+    setQuantityEditClicked(!quantityEditClicked)
   }
 
 
@@ -75,16 +83,18 @@ const TableDataQuantity = ( {type, quantity, newQuantity, setNewQuantity, handle
     </Td>
     ) : (
       <Td>{type.toLowerCase() === 'money' ? `$${quantity}` : `${quantity} boxes/bags`}
-        <IconButton
-          mb={1}
-          aria-label={"edit icon"}
-          icon={<EditIcon />}
-          background="none"
-          size="sm"
-          _hover={{ color: "gray.50" }}
-          onClick={() => setQuantityEditClicked(!quantityEditClicked)}
-          >
-        </IconButton>
+        {!isSomeEditOpen && (
+          <IconButton
+            mb={1}
+            aria-label={"edit icon"}
+            icon={<EditIcon />}
+            background="none"
+            size="sm"
+            _hover={{ color: "gray.50" }}
+            onClick={handleClick}
+            >
+          </IconButton>
+        )}
         </Td>
     )}
     </>
