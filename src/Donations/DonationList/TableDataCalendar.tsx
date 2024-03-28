@@ -21,6 +21,7 @@ const TableDataCalendar = ( {startDate, setStartDate, dateEditClicked, setDateEd
   }
 
   const cancelUpdateDate = (e: any) => {
+    setIsSomeEditOpen(!isSomeEditOpen);
     setDateEditClicked(!dateEditClicked);
   }
 

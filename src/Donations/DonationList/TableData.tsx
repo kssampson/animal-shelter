@@ -13,17 +13,19 @@ type Props = {
   id: number;
   handleDateEdit: (newDate: Date, id: number) => void;
   handleTypeEdit: (newType: string, id: number) => void;
-  handleQuantityEdit: (quantity: number, id: number) => void
+  handleQuantityEdit: (quantity: number, id: number) => void;
+  isSomeEditOpen: boolean;
+  setIsSomeEditOpen: React.Dispatch<React.SetStateAction<boolean>>;
 }
 
-const TableData = ( { donorName, type, quantity, date, handleNameEdit, id, handleDateEdit, handleTypeEdit, handleQuantityEdit }: Props)  => {
+const TableData = ( { donorName, type, quantity, date, handleNameEdit, id, handleDateEdit, handleTypeEdit, handleQuantityEdit, isSomeEditOpen, setIsSomeEditOpen }: Props)  => {
 
   const [nameEditOpen, setNameEditOpen] = useState(false);
   const [dateEditClicked, setDateEditClicked] = useState(false);
   const [typeEditClicked, setTypeEditClicked] = useState(false);
   const [quantityEditClicked, setQuantityEditClicked] = useState(false);
 
-  const [isSomeEditOpen, setIsSomeEditOpen] = useState(false);
+  // const [isSomeEditOpen, setIsSomeEditOpen] = useState(false);
 
   const [newName, setNewName] = useState("");
   const [startDate, setStartDate] = useState(date);

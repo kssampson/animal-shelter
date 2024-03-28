@@ -1,4 +1,4 @@
-import { Box, Table, TableCaption, TableContainer, Tbody, Tfoot, Th, Thead, Tr, Text, RadioGroup, Stack, Radio, Icon, IconButton } from "@chakra-ui/react";
+import { Box, Table, TableCaption, TableContainer, Tbody, Tfoot, Th, Thead, Tr, Text, RadioGroup, Stack, Radio, IconButton } from "@chakra-ui/react";
 import { Donation } from "../../App";
 import TableData from "./TableData";
 import { useEffect, useState } from "react";
@@ -19,6 +19,8 @@ const DonationList = ( {donations, setDonations, handleNameEdit, handleDateEdit,
 
   const [filteredDonations, setFilteredDonations] = useState(donations);
   const [filterValue, setFilterValue] = useState('All Items');
+
+  const [isSomeEditOpen, setIsSomeEditOpen] = useState(false);
 
   useEffect(() => {
     const currentFilter = donations.filter((donation) => donation.type === filterValue);
@@ -63,16 +65,20 @@ const DonationList = ( {donations, setDonations, handleNameEdit, handleDateEdit,
                     handleDateEdit={handleDateEdit}
                     handleTypeEdit={handleTypeEdit}
                     handleQuantityEdit={handleQuantityEdit}
+                    isSomeEditOpen={isSomeEditOpen}
+                    setIsSomeEditOpen={setIsSomeEditOpen}
                     />
-                    <IconButton
-                      onClick={() => deleteDonation(donation.id)}
-                      aria-label={"cancel icon"}
-                      icon={<DeleteIcon />}
-                      background="none"
-                      size="xs"
-                      _hover={{ color: "red" }}
-                      mt={5}
-                    ></IconButton>
+                    {!isSomeEditOpen && (
+                      <IconButton
+                        onClick={() => deleteDonation(donation.id)}
+                        aria-label={"cancel icon"}
+                        icon={<DeleteIcon />}
+                        background="none"
+                        size="xs"
+                        _hover={{ color: "red" }}
+                        mt={5}
+                      ></IconButton>
+                    )}
                   </Tr>
                 )
               })}
