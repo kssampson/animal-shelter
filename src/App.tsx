@@ -103,7 +103,7 @@ function App() {
    * These are designed with scalability -- with exception of the statictics component, all other uses are mapped. Just add a category to the end,
    * i.e. ['All Items', 'Money', 'Food', 'Clothing', 'Doggie Daycare Gift Cards', 'Dog Wash IOUs'];
    */
-  const filterOptions = ['All Items', 'Money', 'Food', 'Clothing', 'Dog Wash IOUs'];
+  const filterOptions = ['All Items', 'Money', 'Food', 'Clothing'];
 
   /**
    *
