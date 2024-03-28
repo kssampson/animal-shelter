@@ -11,13 +11,10 @@ type Props = {
   id: number;
   isSomeEditOpen: boolean;
   setIsSomeEditOpen: React.Dispatch<React.SetStateAction<boolean>>;
+  filterOptions: string[];
 }
 
-const TableDataType = ( {type, newType, setNewType, handleTypeEdit, typeEditClicked, setTypeEditClicked, id, isSomeEditOpen, setIsSomeEditOpen}: Props ) => {
-
-  // const updateValue = (e: any) => {
-  //   setNewType(e.target.value);
-  // }
+const TableDataType = ( {type, newType, setNewType, handleTypeEdit, typeEditClicked, setTypeEditClicked, id, isSomeEditOpen, setIsSomeEditOpen, filterOptions}: Props ) => {
 
   const cancelUpdateType = (e: any) => {
     setIsSomeEditOpen(!isSomeEditOpen);
@@ -39,9 +36,11 @@ const TableDataType = ( {type, newType, setNewType, handleTypeEdit, typeEditClic
       {typeEditClicked ? (
         <Td display="flex">
         <Select size='sm' placeholder='None' onChange={handleSubmit}>
-          <option value='Food'>Food</option>
-          <option value='Clothing'>Clothing</option>
-          <option value='Money'>Money</option>
+          {filterOptions.slice(1).map((option, idx) => {
+            return (
+              <option key={idx} value={`${option}`}>{`${option}`}</option>
+            )
+          })}
         </Select>
         <IconButton
         ml={2}

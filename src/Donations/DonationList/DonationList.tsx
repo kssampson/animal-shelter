@@ -1,4 +1,4 @@
-import { Box, Table, TableCaption, TableContainer, Tbody, Tfoot, Th, Thead, Tr, Text, RadioGroup, Stack, Radio, IconButton } from "@chakra-ui/react";
+import { Box, Table, TableCaption, TableContainer, Tbody, Tfoot, Th, Thead, Tr, Text, RadioGroup, Stack, Radio, IconButton} from "@chakra-ui/react";
 import { Donation } from "../../App";
 import TableData from "./TableData";
 import { useEffect, useState } from "react";
@@ -19,10 +19,13 @@ type Props = {
 
 const DonationList = ( {donations, setDonations, handleNameEdit, handleDateEdit, handleTypeEdit, handleQuantityEdit, filterOptions, deleteDonation, isSomeEditOpen, setIsSomeEditOpen}: Props ) => {
 
+  /**
+   * filteredDonations - the current array of donations that fall under the filterValue
+   * filterValue  - the current value among filter options, i.e. 'Money', 'Food', etc.
+   */
   const [filteredDonations, setFilteredDonations] = useState(donations);
   const [filterValue, setFilterValue] = useState('All Items');
 
-  // const [isSomeEditOpen, setIsSomeEditOpen] = useState(false);
 
   useEffect(() => {
     const currentFilter = donations.filter((donation) => donation.type === filterValue);
@@ -69,6 +72,7 @@ const DonationList = ( {donations, setDonations, handleNameEdit, handleDateEdit,
                     handleQuantityEdit={handleQuantityEdit}
                     isSomeEditOpen={isSomeEditOpen}
                     setIsSomeEditOpen={setIsSomeEditOpen}
+                    filterOptions={filterOptions}
                     />
                     {!isSomeEditOpen && (
                       <IconButton

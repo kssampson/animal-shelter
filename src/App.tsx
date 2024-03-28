@@ -4,6 +4,10 @@ import DonationForm from './Donations/DonationForm/DonationForm'
 import DonationList from './Donations/DonationList/DonationList';
 import DonationStats from './Donations/DonationStats';
 
+/**
+ * fakeDonations is the fake data used to display the front end functionality
+ */
+
 const fakeDonations = [
   {
     id: 1,
@@ -88,10 +92,24 @@ export type Donation = {
 function App() {
 
   const [donations, setDonations] = useState(fakeDonations);
+
+  /**
+   * isSomeEditOpen toggles whether or not other row items can be edited when one row item is already open for edit. Ex. User can edit multiple rows at the same time, but users cannot edit more than one item at a time in a given row. User also cannot delete any rows when editing a row item.
+   */
   const [isSomeEditOpen, setIsSomeEditOpen] = useState(false);
 
-  const filterOptions = ['Money', 'Food', 'Clothing', 'All Items'];
 
+  /**
+   * These are designed with scalability -- with exception of the statictics component, all other uses are mapped. Just add a category to the end,
+   * i.e. ['All Items', 'Money', 'Food', 'Clothing', 'Doggie Daycare Gift Cards', 'Dog Wash IOUs'];
+   */
+  const filterOptions = ['All Items', 'Money', 'Food', 'Clothing', 'Dog Wash IOUs'];
+
+  /**
+   *
+   * @param newName {string} - text which will replace the donor's current name
+   * @param id {number} - id of the current donation to be edited
+   */
   const handleNameEdit = (newName: string, id: number) => {
     const updated = donations.map((donation) => {
       if (donation.id === id) {
@@ -103,6 +121,11 @@ function App() {
     setDonations(updated);
   }
 
+  /**
+   *
+   * @param newDate {Date} - new date to replace current date in row. Derived from React date-picker
+   * @param id {number} - id of the current donation
+   */
   const handleDateEdit = (newDate: Date, id: number) => {
     const updated = donations.map((donation) => {
       if (donation.id === id) {
@@ -114,6 +137,11 @@ function App() {
     setDonations(updated);
   }
 
+  /**
+   *
+   * @param newType {string} - e.g. Food, Clothing, Money from Select
+   * @param id {number} - the donation id
+   */
   const handleTypeEdit = (newType: string, id: number) => {
     const updated = donations.map((donation) => {
       if (donation.id === id) {
@@ -136,6 +164,14 @@ function App() {
     setDonations(updated);
   }
 
+  /**
+   *
+   * @param firstName {string} - first name from new donation form
+   * @param lastName {string} - last name from new donation form
+   * @param donationDate {Date} - date selected on new donation form
+   * @param donationQuantity - {number} amount or quantity
+   * @param donationType - {string} Food, Clothing, Money
+   */
   const updateDonations = (firstName: string, lastName: string, donationDate: Date, donationQuantity: number, donationType: string) => {
     let numOfDonationsPlusOne = donations.length + 1;
     let newDonation = {
@@ -148,6 +184,10 @@ function App() {
     setDonations([...donations, newDonation]);
   }
 
+  /**
+   *
+   * @param id {number} - id of the current donation
+   */
   const deleteDonation = (id: number) => {
     const updated = donations.filter((donation) => {
       return donation.id !== id;

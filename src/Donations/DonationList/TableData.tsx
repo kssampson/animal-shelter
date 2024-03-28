@@ -16,9 +16,10 @@ type Props = {
   handleQuantityEdit: (quantity: number, id: number) => void;
   isSomeEditOpen: boolean;
   setIsSomeEditOpen: React.Dispatch<React.SetStateAction<boolean>>;
+  filterOptions: string[];
 }
 
-const TableData = ( { donorName, type, quantity, date, handleNameEdit, id, handleDateEdit, handleTypeEdit, handleQuantityEdit, isSomeEditOpen, setIsSomeEditOpen }: Props)  => {
+const TableData = ( { donorName, type, quantity, date, handleNameEdit, id, handleDateEdit, handleTypeEdit, handleQuantityEdit, isSomeEditOpen, setIsSomeEditOpen, filterOptions }: Props)  => {
 
   const [nameEditOpen, setNameEditOpen] = useState(false);
   const [dateEditClicked, setDateEditClicked] = useState(false);
@@ -36,7 +37,7 @@ const TableData = ( { donorName, type, quantity, date, handleNameEdit, id, handl
     <>
       <TableDataTextForm newName={newName} setNewName={setNewName} setNameEditOpen={setNameEditOpen} nameEditOpen={nameEditOpen} handleNameEdit={handleNameEdit} id={id} donorName={donorName} isSomeEditOpen={isSomeEditOpen} setIsSomeEditOpen={setIsSomeEditOpen}/>
 
-      <TableDataType type={type} newType={newType} setNewType={setNewType} handleTypeEdit={handleTypeEdit} typeEditClicked={typeEditClicked} setTypeEditClicked={setTypeEditClicked} id={id} isSomeEditOpen={isSomeEditOpen} setIsSomeEditOpen={setIsSomeEditOpen}/>
+      <TableDataType type={type} newType={newType} setNewType={setNewType} handleTypeEdit={handleTypeEdit} typeEditClicked={typeEditClicked} setTypeEditClicked={setTypeEditClicked} id={id} isSomeEditOpen={isSomeEditOpen} setIsSomeEditOpen={setIsSomeEditOpen} filterOptions={filterOptions}/>
 
       <TableDataQuantity type={type} quantity={quantity} newQuantity={newQuantity} setNewQuantity={setNewQuantity} handleQuantityEdit={handleQuantityEdit} quantityEditClicked={quantityEditClicked} setQuantityEditClicked={setQuantityEditClicked} id={id} isSomeEditOpen={isSomeEditOpen} setIsSomeEditOpen={setIsSomeEditOpen}/>
 

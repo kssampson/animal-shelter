@@ -16,7 +16,7 @@ const DonationType = ( {filterOptions, donationType, setDonationType, isErrorDon
       </FormLabel>
       <RadioGroup defaultValue={filterOptions[1]} onChange={setDonationType} value={donationType}>
         <HStack spacing='24px'>
-          {filterOptions.slice(0, filterOptions.length-1).map((option, idx) => <Radio key={idx} value={option}>{`${option}`}</Radio>)}
+          {filterOptions.slice(1).map((option, idx) => <Radio key={idx} value={option}>{`${option}`}</Radio>)}
         </HStack>
       </RadioGroup>
       {!isErrorDonationType ? (
