@@ -12,6 +12,9 @@ const DonationDate = ( { donationDate, setDonationDate }: Props ) => {
     <FormControl pt={5} pb={5}>
       <FormLabel>Donation Date</FormLabel>
       <Box
+        border={'2px solid blue'}
+        borderRadius={'4px'}
+        w={'26%'}
         _hover={{
         background: "white",
         color: "gray.500",

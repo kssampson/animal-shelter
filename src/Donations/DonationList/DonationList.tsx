@@ -13,14 +13,16 @@ type Props = {
   handleQuantityEdit: (quantity: number, id: number) => void;
   filterOptions: string[];
   deleteDonation: (id: number) => void;
+  isSomeEditOpen: boolean;
+  setIsSomeEditOpen: React.Dispatch<React.SetStateAction<boolean>>;
 }
 
-const DonationList = ( {donations, setDonations, handleNameEdit, handleDateEdit, handleTypeEdit, handleQuantityEdit, filterOptions, deleteDonation}: Props ) => {
+const DonationList = ( {donations, setDonations, handleNameEdit, handleDateEdit, handleTypeEdit, handleQuantityEdit, filterOptions, deleteDonation, isSomeEditOpen, setIsSomeEditOpen}: Props ) => {
 
   const [filteredDonations, setFilteredDonations] = useState(donations);
   const [filterValue, setFilterValue] = useState('All Items');
 
-  const [isSomeEditOpen, setIsSomeEditOpen] = useState(false);
+  // const [isSomeEditOpen, setIsSomeEditOpen] = useState(false);
 
   useEffect(() => {
     const currentFilter = donations.filter((donation) => donation.type === filterValue);
