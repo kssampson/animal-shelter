@@ -9,9 +9,11 @@ type Props = {
   handleNameEdit: (newName: string, id: number) => void;
   id: number;
   donorName: string;
+  isSomeEditOpen: boolean;
+  setIsSomeEditOpen: React.Dispatch<React.SetStateAction<boolean>>;
 }
 
-const TableDataTextForm = ( {newName, setNewName, setNameEditOpen, nameEditOpen, handleNameEdit, id, donorName}: Props ) => {
+const TableDataTextForm = ( {newName, setNewName, setNameEditOpen, nameEditOpen, handleNameEdit, id, donorName, isSomeEditOpen, setIsSomeEditOpen}: Props ) => {
 
   const updateValue = (e: any) => {
     setNewName(e.target.value);
@@ -19,12 +21,19 @@ const TableDataTextForm = ( {newName, setNewName, setNameEditOpen, nameEditOpen,
 
   const cancelUpdateName = (e: any) => {
     setNewName("");
+    setIsSomeEditOpen(!isSomeEditOpen);
     setNameEditOpen(!nameEditOpen)
   }
 
   const handleSubmit = (e: any) => {
     handleNameEdit(newName, id);
+    setIsSomeEditOpen(!isSomeEditOpen);
     setNameEditOpen(!nameEditOpen);
+  }
+
+  const handleClick = () => {
+    setIsSomeEditOpen(!isSomeEditOpen);
+    setNameEditOpen(!nameEditOpen)
   }
 
   return (
@@ -35,7 +44,7 @@ const TableDataTextForm = ( {newName, setNewName, setNameEditOpen, nameEditOpen,
         <Input
         type={'text'}
         fontSize="medium"
-        width={"75%"} size="xs"
+        width={"75%"} size="sm"
         onChange={updateValue}/>
       </FormControl>
       <IconButton
@@ -56,16 +65,18 @@ const TableDataTextForm = ( {newName, setNewName, setNameEditOpen, nameEditOpen,
     </Td>
     ) : (
       <Td>{donorName}
-        <IconButton
-          mb={1}
-          aria-label={"edit icon"}
-          icon={<EditIcon />}
-          background="none"
-          size="sm"
-          _hover={{ color: "gray.50" }}
-          onClick={() => setNameEditOpen(!nameEditOpen)}
-          >
-        </IconButton>
+        {!isSomeEditOpen && (
+          <IconButton
+            mb={1}
+            aria-label={"edit icon"}
+            icon={<EditIcon />}
+            background="none"
+            size="sm"
+            _hover={{ color: "gray.50" }}
+            onClick={handleClick}
+            >
+          </IconButton>
+        )}
         </Td>
     )}
     </>

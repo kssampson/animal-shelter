@@ -9,20 +9,28 @@ type Props = {
   typeEditClicked: boolean;
   setTypeEditClicked: React.Dispatch<React.SetStateAction<boolean>>;
   id: number;
+  isSomeEditOpen: boolean;
+  setIsSomeEditOpen: React.Dispatch<React.SetStateAction<boolean>>;
 }
 
-const TableDataType = ( {type, newType, setNewType, handleTypeEdit, typeEditClicked, setTypeEditClicked, id}: Props ) => {
+const TableDataType = ( {type, newType, setNewType, handleTypeEdit, typeEditClicked, setTypeEditClicked, id, isSomeEditOpen, setIsSomeEditOpen}: Props ) => {
 
   // const updateValue = (e: any) => {
   //   setNewType(e.target.value);
   // }
 
   const cancelUpdateType = (e: any) => {
+    setIsSomeEditOpen(!isSomeEditOpen);
     setTypeEditClicked(!typeEditClicked);
   }
 
   const handleSubmit = (e: any) => {
     handleTypeEdit(e.target.value, id);
+    setTypeEditClicked(!typeEditClicked);
+  }
+
+  const handleClick = () => {
+    setIsSomeEditOpen(!isSomeEditOpen);
     setTypeEditClicked(!typeEditClicked);
   }
 
@@ -48,6 +56,7 @@ const TableDataType = ( {type, newType, setNewType, handleTypeEdit, typeEditClic
       </Td>
       ) : (
         <Td>{type}
+        {!isSomeEditOpen && (
           <IconButton
             mb={1}
             aria-label={"edit icon"}
@@ -55,9 +64,10 @@ const TableDataType = ( {type, newType, setNewType, handleTypeEdit, typeEditClic
             background="none"
             size="sm"
             _hover={{ color: "gray.50" }}
-            onClick={() => setTypeEditClicked(!typeEditClicked)}
+            onClick={handleClick}
             >
           </IconButton>
+        )}
           </Td>
       )}
     </>

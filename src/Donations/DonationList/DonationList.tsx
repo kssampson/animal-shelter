@@ -35,7 +35,7 @@ const DonationList = ( {donations, setDonations, handleNameEdit, handleDateEdit,
           </Stack>
         </RadioGroup>
       </Box>
-      <TableContainer>
+      <TableContainer >
         {filteredDonations.length ? (
           <Table colorScheme='teal'>
           <TableCaption>Donation Inventory</TableCaption>
