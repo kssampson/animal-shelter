@@ -1,4 +1,4 @@
-import { Box, Table, TableCaption, TableContainer, Tbody, Tfoot, Th, Thead, Tr, Text, RadioGroup, Stack, Radio, IconButton} from "@chakra-ui/react";
+import { Box, Table, TableCaption, TableContainer, Tbody, Tfoot, Th, Thead, Tr, Text, RadioGroup, Stack, Radio, IconButton, Td} from "@chakra-ui/react";
 import { Donation } from "../../App";
 import TableData from "./TableData";
 import { useEffect, useState } from "react";
@@ -75,15 +75,16 @@ const DonationList = ( {donations, setDonations, handleNameEdit, handleDateEdit,
                     filterOptions={filterOptions}
                     />
                     {!isSomeEditOpen && (
-                      <IconButton
-                        onClick={() => deleteDonation(donation.id)}
-                        aria-label={"cancel icon"}
-                        icon={<DeleteIcon />}
-                        background="none"
-                        size="xs"
-                        _hover={{ color: "red" }}
-                        mt={5}
-                      ></IconButton>
+                      <Td>
+                        <IconButton
+                          onClick={() => deleteDonation(donation.id)}
+                          aria-label={"cancel icon"}
+                          icon={<DeleteIcon />}
+                          background="none"
+                          size="xs"
+                          _hover={{ color: "red" }}
+                        ></IconButton>
+                      </Td>
                     )}
                   </Tr>
                 )

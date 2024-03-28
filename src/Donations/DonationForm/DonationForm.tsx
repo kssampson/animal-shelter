@@ -7,7 +7,6 @@ import DonationQuantity from "./DonationQuantity";
 import DonationDate from "./DonationDate";
 import { Button } from '@chakra-ui/react'
 import { validateInputs } from "../../utils/validateInputs";
-import { Donation } from "../../App";
 
 type Props = {
   filterOptions: string[];
@@ -26,22 +25,17 @@ const DonationForm = ( { filterOptions, updateDonations }: Props ) => {
   const [isLastNameSubmitted, setIsLastNameSubmitted] = useState(false);
   const [isDonationTypeSubmitted, setIsDonationTypeSubmitted] = useState(false);
   const [isDonationQuantitySubmitted, setIsDonationQuantitySubmitted] = useState(false);
-  // const [isDonationDateSubmitted, setIsDonationDateSubmitted] = useState(false);
 
   const isErrorFirstName = firstName === '' && isFirstNameSubmitted;
   const isErrorLastName = lastName === '' && isLastNameSubmitted;
   const isErrorDonationType = donationType === '' && isDonationTypeSubmitted;
   const isErrorDonationQuantity = donationQuantity <= 0 && isDonationQuantitySubmitted;
 
-  console.log('isErrorQuantity: ', isErrorDonationQuantity)
-  console.log('donatationQuantity: ', donationQuantity)
-
   const handleDonationSubmit = () => {
     setIsFirstNameSubmitted(true);
     setIsLastNameSubmitted(true);
     setIsDonationTypeSubmitted(true);
     setIsDonationQuantitySubmitted(true);
-    // setIsDonationDateSubmitted(true);
     if (validateInputs.allInputsValid(firstName, lastName, donationDate, donationQuantity, donationType, filterOptions)) {
       updateDonations(firstName, lastName, donationDate, donationQuantity, donationType);
       setFirstName('');
@@ -53,7 +47,6 @@ const DonationForm = ( { filterOptions, updateDonations }: Props ) => {
       setIsLastNameSubmitted(false);
       setIsDonationTypeSubmitted(false);
       setIsDonationQuantitySubmitted(false);
-      // setIsDonationDateSubmitted(false);
     } else {
       return null;
     }
